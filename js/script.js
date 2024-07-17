@@ -318,7 +318,7 @@ function getRandomCountryDetails(arr, num) {
   
   return {
       codes: selectedCountries.map(country => country.code),
-      countries: selectedCountries.map(country => country.nom),
+      names: selectedCountries.map(country => country.nom),
       correct: randomIndex + 1
   };
 }
@@ -348,8 +348,6 @@ function changeDifficulty(){
 function removeAccents(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
-
-///////////////////////////////////// A MODIFIER /////////////////////////////////////
 
 // Evenement pour le menu de recherche de pays auto-complétant
 document.addEventListener("DOMContentLoaded", async () => {
@@ -388,16 +386,13 @@ document.addEventListener("DOMContentLoaded", async () => {
  }
 });
 
-///////////////////////////////////// A MODIFIER /////////////////////////////////////
-
-
 // Fonction qui démarre le jeu Flag Game
 let score = 0;
 async function flagGame() {
   try {
     const result = getRandomCountryDetails(countries, 4);
     const codes = result.codes;
-    const countries = result.countries;
+    const names = result.names;
     const originalIndex = result.correct;
 
     // ------------ Initialisation CSS ------------//
@@ -478,7 +473,7 @@ async function flagGame() {
         correctFlag.style.outline = "solid green 10px";
         setTimeout(flagGame, 1000);
       } else {
-        endFlagGame(1, originalIndex, countries);
+        endFlagGame(1, originalIndex, names);
       }
     };
     image2.onclick = () => { 
@@ -493,7 +488,7 @@ async function flagGame() {
         correctFlag.style.outline = "solid green 10px";
         setTimeout(flagGame, 1000);
       } else {
-        endFlagGame(2, originalIndex, countries);
+        endFlagGame(2, originalIndex, names);
       }
     };
     image3.onclick = () => { 
@@ -508,7 +503,7 @@ async function flagGame() {
         correctFlag.style.outline = "solid green 10px";
         setTimeout(flagGame, 1000);
       } else {
-        endFlagGame(3, originalIndex, countries);
+        endFlagGame(3, originalIndex, names);
       }
     };
     image4.onclick = () => { 
@@ -523,14 +518,14 @@ async function flagGame() {
         correctFlag.style.outline = "solid green 10px";
         setTimeout(flagGame, 1000);
       } else {
-        endFlagGame(4, originalIndex, countries);
+        endFlagGame(4, originalIndex, names);
       }
     };
 
     // ------------ Gestion clic drapeaux ------------//
 
 
-    document.getElementById('countryName').innerHTML = "Trouvez le drapeau de : " + "<strong>" + countries[originalIndex-1] + "</strong>";
+    document.getElementById('countryName').innerHTML = "Trouvez le drapeau de : " + "<strong>" + names[originalIndex-1] + "</strong>";
     document.getElementById('content').style.display = 'flex';
   } catch (error) {
     console.error('Error:', error);
@@ -538,7 +533,7 @@ async function flagGame() {
 }
 
 // Fonction de mise à jour des éléments quand le jeu est fini
-async function endFlagGame(bad, answer, countries){
+async function endFlagGame(bad, answer, names){
 // ------------ Gestion CSS ------------//
 
   // Ajoute la bordure sur le drapeau correct
@@ -558,7 +553,7 @@ async function endFlagGame(bad, answer, countries){
   // Affiche les noms des pays quand perdu
   for (let i = 1; i <= 4; i++) {
     const name = document.getElementById('name' + i);
-    name.textContent = countries[i-1];
+    name.textContent = names[i-1];
     name.style.fontWeight = "bold";
   }
 
@@ -647,12 +642,10 @@ async function mapGame() {
       element.style.strokeWidth = "1px";
       element.style.stroke = "rgb(5, 94, 27)";
       setTimeout(() => {
-        console.log("WIN", id, code);
         score2++;
         mapGame();
       },1250);
     } else {
-      console.log("LOSE", id, code);
       endMapGame(id, code);
     }
   }
