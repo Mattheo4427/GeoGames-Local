@@ -595,7 +595,7 @@ async function mapGame() {
 
   // Ajoute un ecart au dessus
   const countryText = document.getElementById('countryName2');
-  countryText.style.marginTop = '12.5vh';
+  countryText.style.marginTop = '8.5vh';
 
   // Fait disparaitre le bouton
   const playButton = document.getElementById('playButton2');
