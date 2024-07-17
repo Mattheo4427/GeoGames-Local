@@ -1,3 +1,7 @@
+let scoreFlagGame = 0;
+let scoreMapGame = 0;
+
+// Tableau contenant les noms et codes ISO2 de tous les pays
 const countries = [
   { nom: "Andorre", code: "ad" },
   { nom: "Émirats arabes unis", code: "ae" },
@@ -255,6 +259,7 @@ const countries = [
   { nom: "Zimbabwe", code: "zw" }
 ];
 
+// Tableau contenant les pays à ne pax inclure dans le jeu Map Game (car pas présents dans le SVG)
 const exclure = [
   { nom: "Antarctique", code: "aq" },
   { nom: "Angleterre", code: "gb-eng" },
@@ -264,7 +269,12 @@ const exclure = [
   { nom: "Îles mineures éloignées des États-Unis", code: "um" }
 ];
 
+// Fonction qui renvoie :
+// - 1 nom de pays aléatoire
+// - le code ISO2 de ce pays
+// Prend en entrée le tableau de pays, et le tableau des pays à exclure
 function getRandomInfos(array, exclude) {
+
   // Créer un tableau des codes à exclure
   const excludeCodes = exclude.map(item => item.code);
 
@@ -282,10 +292,11 @@ function getRandomInfos(array, exclude) {
 }
 
 // Fonction qui renvoie :
-// - 4 noms de pays
-// - les 4 codes ISO2 de ces pays
-// - l'index du pays correct
-function getRandomCountryDetails(arr, num) {
+// - <num> noms de pays
+// - les codes ISO2 de ces pays
+// - l'index d'un pays dit correct
+// Prend en entrée le tableau de pays, et le nombre de pays à sélectionner (>2 pour être utile)
+function getRandomCountryDetails(array, num) {
 
   // Groupes de drapeaux identiques
   const flagGroups = [
@@ -310,7 +321,7 @@ function getRandomCountryDetails(arr, num) {
   let selectedCountries;
   // Tant que 2 drapeaux identiques sont selectionnés, on rechoisit
   do {
-      const shuffled = arr.sort(() => 0.5 - Math.random());
+      const shuffled = array.sort(() => 0.5 - Math.random());
       selectedCountries = shuffled.slice(0, num);
   } while (hasGroupConflict(selectedCountries));
 
@@ -323,6 +334,7 @@ function getRandomCountryDetails(arr, num) {
   };
 }
 
+// Evenement pour les boutons de jeu
 if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
   document.getElementById('playButton').addEventListener('click', flagGame);
   document.getElementById('playButton2').addEventListener('click', mapGame);
@@ -387,7 +399,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 // Fonction qui démarre le jeu Flag Game
-let score = 0;
 async function flagGame() {
   try {
     const result = getRandomCountryDetails(countries, 4);
@@ -422,7 +433,7 @@ async function flagGame() {
 
      // ------------ Initialisation CSS ------------//
 
-    document.getElementById('score').textContent = "Score : " + score;
+    document.getElementById('scoreFlagGame').textContent = "Score : " + scoreFlagGame;
 
     // Fonction pour précharger une image
     function preloadImage(src) {
@@ -467,7 +478,7 @@ async function flagGame() {
       hasClicked = true;
 
       if (originalIndex === 1) { 
-        score++;
+        scoreFlagGame++;
         // Ajoute la bordure sur le drapeau correct
         const correctFlag = document.getElementById('image1');
         correctFlag.style.outline = "solid green 10px";
@@ -482,7 +493,7 @@ async function flagGame() {
       hasClicked = true;
 
       if (originalIndex === 2) { 
-        score++;
+        scoreFlagGame++;
         // Ajoute la bordure sur le drapeau correct
         const correctFlag = document.getElementById('image2');
         correctFlag.style.outline = "solid green 10px";
@@ -497,7 +508,7 @@ async function flagGame() {
       hasClicked = true;
 
       if (originalIndex === 3) { 
-        score++;
+        scoreFlagGame++;
         // Ajoute la bordure sur le drapeau correct
         const correctFlag = document.getElementById('image3');
         correctFlag.style.outline = "solid green 10px";
@@ -512,7 +523,7 @@ async function flagGame() {
       hasClicked = true;
 
       if (originalIndex === 4) { 
-        score++;
+        scoreFlagGame++;
         // Ajoute la bordure sur le drapeau correct
         const correctFlag = document.getElementById('image4');
         correctFlag.style.outline = "solid green 10px";
@@ -532,7 +543,7 @@ async function flagGame() {
   }
 }
 
-// Fonction de mise à jour des éléments quand le jeu est fini
+// Fonction de mise à jour des éléments quand le jeu Flag Game est fini
 async function endFlagGame(bad, answer, names){
 // ------------ Gestion CSS ------------//
 
@@ -567,10 +578,9 @@ async function endFlagGame(bad, answer, names){
   const countryText = document.getElementById('countryName');
   countryText.style.marginTop = '1vh';
 
-  score = 0;
+  scoreFlagGame = 0;
 }
 
-let score2 = 0;
 // Fonction qui démarre le jeu Map Game
 async function mapGame() {
 
@@ -618,7 +628,7 @@ async function mapGame() {
 
   // ------------ Initialisation CSS ------------//
 
-  document.getElementById('score2').textContent = "Score : " + score2;
+  document.getElementById('scoreMapGame').textContent = "Score : " + scoreMapGame;
   const randomInfos = getRandomInfos(countries, exclure);
   document.getElementById('countryName2').innerHTML = "Cliquez sur : " + "<strong>" + randomInfos[0] + "</strong>";
     
@@ -642,7 +652,7 @@ async function mapGame() {
       element.style.strokeWidth = "1px";
       element.style.stroke = "rgb(5, 94, 27)";
       setTimeout(() => {
-        score2++;
+        scoreMapGame++;
         mapGame();
       },1250);
     } else {
@@ -651,7 +661,7 @@ async function mapGame() {
   }
 }
 
-// Fonction de mise à jour des éléments quand le jeu est fini
+// Fonction de mise à jour des éléments quand le jeu Map Game est fini
 async function endMapGame(bad, answer){
 
   const svg = document.querySelector('svg');
@@ -698,5 +708,5 @@ async function endMapGame(bad, answer){
   const countryText = document.getElementById('countryName2');
   countryText.style.marginTop = '1vh';
 
-  score2 = 0;
+  scoreMapGame = 0;
 }
