@@ -44,9 +44,12 @@
     <div id="flagGame" style="width: 100%; height:100vh; background-color:  rgb(180, 219, 251);">
       <div style="color:#000000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
         <h1 class="titre_principal" style="margin-top: 15vh;">Flag Game</h1>
-        <button class="playButton" id="playButton" style="margin-top: 4vh;">Jouer</button>
+        <div style="margin-top: 4vh; display: flex; justify-content: center;">
+          <button class="playButton" id="playButton" style="margin-right: 1em;">Jouer</button>
+          <button class="playButton" id="modeFlagGame">Pays</button>
+        </div>
         <p style="font-size: 3vh;" id="countryName"></p>
-        <p style=" font-size: 3vh" id="score"></p>
+        <p style=" font-size: 3vh" id="scoreFlagGame"></p>
       </div>
       <div id="content" style="display:none; margin-top:2vh; color:black; justify-content: center; align-items: center;">
         <div id="div1">
@@ -75,10 +78,11 @@
         <h1 class="titre_principal" style="margin-top: 15vh;">Map Game</h1>
         <div style="margin-top: 4vh; display: flex; justify-content: center;">
           <button class="playButton" id="playButton2" style="margin-right: 1em;">Jouer</button>
-          <button class="playButton" id="borders">Facile</button>
+          <button class="playButton" id="borders" style="margin-right: 1em;">Facile</button>
+          <button class="playButton" id="modeMapGame">Pays</button>
         </div>
         <p style="font-size: 3vh;" id="countryName2"></p>
-        <p style="font-size: 3vh;" id="score2"></p>
+        <p style="font-size: 3vh;" id="scoreMapGame"></p>
       </div>
       <div id="svg-container" style="display:none; width: 100%; height: 800px; overflow: auto;">
         <svg

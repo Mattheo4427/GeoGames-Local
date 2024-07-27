@@ -3,271 +3,269 @@ let scoreMapGame = 0;
 
 // Tableau contenant les noms et codes ISO2 de tous les pays
 const countries = [
-  { nom: "Andorre", code: "ad" },
-  { nom: "Émirats arabes unis", code: "ae" },
-  { nom: "Afghanistan", code: "af" },
-  { nom: "Antigua-et-Barbuda", code: "ag" },
-  { nom: "Anguilla", code: "ai" },
-  { nom: "Albanie", code: "al" },
-  { nom: "Arménie", code: "am" },
-  { nom: "Angola", code: "ao" },
-  { nom: "Antarctique", code: "aq" },
-  { nom: "Argentine", code: "ar" },
-  { nom: "Samoa américaines", code: "as" },
-  { nom: "Autriche", code: "at" },
-  { nom: "Australie", code: "au" },
-  { nom: "Aruba", code: "aw" },
-  { nom: "Îles Åland", code: "ax" },
-  { nom: "Azerbaïdjan", code: "az" },
-  { nom: "Bosnie-Herzégovine", code: "ba" },
-  { nom: "Barbade", code: "bb" },
-  { nom: "Bangladesh", code: "bd" },
-  { nom: "Belgique", code: "be" },
-  { nom: "Burkina Faso", code: "bf" },
-  { nom: "Bulgarie", code: "bg" },
-  { nom: "Bahreïn", code: "bh" },
-  { nom: "Burundi", code: "bi" },
-  { nom: "Bénin", code: "bj" },
-  { nom: "Saint-Barthélemy", code: "bl" },
-  { nom: "Bermudes", code: "bm" },
-  { nom: "Brunéi", code: "bn" },
-  { nom: "Bolivie", code: "bo" },
-  { nom: "Bonaire", code: "bq" },
-  { nom: "Brésil", code: "br" },
-  { nom: "Bahamas", code: "bs" },
-  { nom: "Bhoutan", code: "bt" },
-  { nom: "Île Bouvet", code: "bv" },
-  { nom: "Botswana", code: "bw" },
-  { nom: "Biélorussie", code: "by" },
-  { nom: "Belize", code: "bz" },
-  { nom: "Canada", code: "ca" },
-  { nom: "Îles Cocos", code: "cc" },
-  { nom: "République démocratique du Congo", code: "cd" },
-  { nom: "République centrafricaine", code: "cf" },
-  { nom: "Congo", code: "cg" },
-  { nom: "Suisse", code: "ch" },
-  { nom: "Côte d'Ivoire", code: "ci" },
-  { nom: "Îles Cook", code: "ck" },
-  { nom: "Chili", code: "cl" },
-  { nom: "Cameroun", code: "cm" },
-  { nom: "Chine", code: "cn" },
-  { nom: "Colombie", code: "co" },
-  { nom: "Costa Rica", code: "cr" },
-  { nom: "Cuba", code: "cu" },
-  { nom: "Cap-Vert", code: "cv" },
-  { nom: "Curaçao", code: "cw" },
-  { nom: "Île Christmas", code: "cx" },
-  { nom: "Chypre", code: "cy" },
-  { nom: "République tchèque", code: "cz" },
-  { nom: "Allemagne", code: "de" },
-  { nom: "Djibouti", code: "dj" },
-  { nom: "Danemark", code: "dk" },
-  { nom: "Dominique", code: "dm" },
-  { nom: "République dominicaine", code: "do" },
-  { nom: "Algérie", code: "dz" },
-  { nom: "Équateur", code: "ec" },
-  { nom: "Estonie", code: "ee" },
-  { nom: "Égypte", code: "eg" },
-  { nom: "Sahara occidental", code: "eh" },
-  { nom: "Érythrée", code: "er" },
-  { nom: "Espagne", code: "es" },
-  { nom: "Éthiopie", code: "et" },
-  { nom: "Finlande", code: "fi" },
-  { nom: "Fidji", code: "fj" },
-  { nom: "Îles Malouines", code: "fk" },
-  { nom: "Micronésie", code: "fm" },
-  { nom: "Îles Féroé", code: "fo" },
-  { nom: "France", code: "fr" },
-  { nom: "Gabon", code: "ga" },
-  { nom: "Angleterre", code: "gb-eng" },
-  { nom: "Irlande du Nord", code: "gb-nir" },
-  { nom: "Écosse", code: "gb-sct" },
-  { nom: "Pays de Galles", code: "gb-wls" },
-  { nom: "Royaume-Uni", code: "gb" },
-  { nom: "Grenade", code: "gd" },
-  { nom: "Géorgie", code: "ge" },
-  { nom: "Guyane française", code: "gf" },
-  { nom: "Guernesey", code: "gg" },
-  { nom: "Ghana", code: "gh" },
-  { nom: "Gibraltar", code: "gi" },
-  { nom: "Groenland", code: "gl" },
-  { nom: "Gambie", code: "gm" },
-  { nom: "Guinée", code: "gn" },
-  { nom: "Guadeloupe", code: "gp" },
-  { nom: "Guinée équatoriale", code: "gq" },
-  { nom: "Grèce", code: "gr" },
-  { nom: "Géorgie du Sud-et-les Îles Sandwich du Sud", code: "gs" },
-  { nom: "Guatemala", code: "gt" },
-  { nom: "Guam", code: "gu" },
-  { nom: "Guinée-Bissau", code: "gw" },
-  { nom: "Guyana", code: "gy" },
-  { nom: "Hong Kong", code: "hk" },
-  { nom: "Îles Heard-et-MacDonald", code: "hm" },
-  { nom: "Honduras", code: "hn" },
-  { nom: "Croatie", code: "hr" },
-  { nom: "Haïti", code: "ht" },
-  { nom: "Hongrie", code: "hu" },
-  { nom: "Indonésie", code: "id" },
-  { nom: "Irlande", code: "ie" },
-  { nom: "Israël", code: "il" },
-  { nom: "Île de Man", code: "im" },
-  { nom: "Inde", code: "in" },
-  { nom: "Territoire britannique de l'océan Indien", code: "io" },
-  { nom: "Irak", code: "iq" },
-  { nom: "Iran", code: "ir" },
-  { nom: "Islande", code: "is" },
-  { nom: "Italie", code: "it" },
-  { nom: "Jersey", code: "je" },
-  { nom: "Jamaïque", code: "jm" },
-  { nom: "Jordanie", code: "jo" },
-  { nom: "Japon", code: "jp" },
-  { nom: "Kenya", code: "ke" },
-  { nom: "Kirghizistan", code: "kg" },
-  { nom: "Cambodge", code: "kh" },
-  { nom: "Kiribati", code: "ki" },
-  { nom: "Comores", code: "km" },
-  { nom: "Saint-Kitts-et-Nevis", code: "kn" },
-  { nom: "Corée du Nord", code: "kp" },
-  { nom: "Corée du Sud", code: "kr" },
-  { nom: "Koweït", code: "kw" },
-  { nom: "Îles Caïmans", code: "ky" },
-  { nom: "Kazakhstan", code: "kz" },
-  { nom: "Laos", code: "la" },
-  { nom: "Liban", code: "lb" },
-  { nom: "Sainte-Lucie", code: "lc" },
-  { nom: "Liechtenstein", code: "li" },
-  { nom: "Sri Lanka", code: "lk" },
-  { nom: "Libéria", code: "lr" },
-  { nom: "Lesotho", code: "ls" },
-  { nom: "Lituanie", code: "lt" },
-  { nom: "Luxembourg", code: "lu" },
-  { nom: "Lettonie", code: "lv" },
-  { nom: "Libye", code: "ly" },
-  { nom: "Maroc", code: "ma" },
-  { nom: "Monaco", code: "mc" },
-  { nom: "Moldavie", code: "md" },
-  { nom: "Monténégro", code: "me" },
-  { nom: "Saint-Martin (partie française)", code: "mf" },
-  { nom: "Madagascar", code: "mg" },
-  { nom: "Îles Marshall", code: "mh" },
-  { nom: "Macédoine du Nord", code: "mk" },
-  { nom: "Mali", code: "ml" },
-  { nom: "Myanmar", code: "mm" },
-  { nom: "Mongolie", code: "mn" },
-  { nom: "Macao", code: "mo" },
-  { nom: "Îles Mariannes du Nord", code: "mp" },
-  { nom: "Martinique", code: "mq" },
-  { nom: "Mauritanie", code: "mr" },
-  { nom: "Montserrat", code: "ms" },
-  { nom: "Malte", code: "mt" },
-  { nom: "Maurice", code: "mu" },
-  { nom: "Maldives", code: "mv" },
-  { nom: "Malawi", code: "mw" },
-  { nom: "Mexique", code: "mx" },
-  { nom: "Malaisie", code: "my" },
-  { nom: "Mozambique", code: "mz" },
-  { nom: "Namibie", code: "na" },
-  { nom: "Nouvelle-Calédonie", code: "nc" },
-  { nom: "Niger", code: "ne" },
-  { nom: "Île Norfolk", code: "nf" },
-  { nom: "Nigeria", code: "ng" },
-  { nom: "Nicaragua", code: "ni" },
-  { nom: "Pays-Bas", code: "nl" },
-  { nom: "Norvège", code: "no" },
-  { nom: "Népal", code: "np" },
-  { nom: "Nauru", code: "nr" },
-  { nom: "Niue", code: "nu" },
-  { nom: "Nouvelle-Zélande", code: "nz" },
-  { nom: "Oman", code: "om" },
-  { nom: "Panama", code: "pa" },
-  { nom: "Pérou", code: "pe" },
-  { nom: "Polynésie française", code: "pf" },
-  { nom: "Papouasie-Nouvelle-Guinée", code: "pg" },
-  { nom: "Philippines", code: "ph" },
-  { nom: "Pakistan", code: "pk" },
-  { nom: "Pologne", code: "pl" },
-  { nom: "Saint-Pierre-et-Miquelon", code: "pm" },
-  { nom: "Îles Pitcairn", code: "pn" },
-  { nom: "Porto Rico", code: "pr" },
-  { nom: "Palestine", code: "ps" },
-  { nom: "Portugal", code: "pt" },
-  { nom: "Palaos", code: "pw" },
-  { nom: "Paraguay", code: "py" },
-  { nom: "Qatar", code: "qa" },
-  { nom: "La Réunion", code: "re" },
-  { nom: "Roumanie", code: "ro" },
-  { nom: "Serbie", code: "rs" },
-  { nom: "Russie", code: "ru" },
-  { nom: "Rwanda", code: "rw" },
-  { nom: "Arabie Saoudite", code: "sa" },
-  { nom: "Îles Salomon", code: "sb" },
-  { nom: "Seychelles", code: "sc" },
-  { nom: "Soudan", code: "sd" },
-  { nom: "Suède", code: "se" },
-  { nom: "Singapour", code: "sg" },
-  { nom: "Sainte-Hélène", code: "sh" },
-  { nom: "Slovénie", code: "si" },
-  { nom: "Svalbard et Jan Mayen", code: "sj" },
-  { nom: "Slovaquie", code: "sk" },
-  { nom: "Sierra Leone", code: "sl" },
-  { nom: "Saint-Marin", code: "sm" },
-  { nom: "Sénégal", code: "sn" },
-  { nom: "Somalie", code: "so" },
-  { nom: "Suriname", code: "sr" },
-  { nom: "Soudan du Sud", code: "ss" },
-  { nom: "Sao Tomé-et-Principe", code: "st" },
-  { nom: "Salvador", code: "sv" },
-  { nom: "Saint-Martin (partie néerlandaise)", code: "sx" },
-  { nom: "Syrie", code: "sy" },
-  { nom: "Eswatini", code: "sz" },
-  { nom: "Îles Turques-et-Caïques", code: "tc" },
-  { nom: "Tchad", code: "td" },
-  { nom: "Terres australes françaises", code: "tf" },
-  { nom: "Togo", code: "tg" },
-  { nom: "Thaïlande", code: "th" },
-  { nom: "Tadjikistan", code: "tj" },
-  { nom: "Tokelau", code: "tk" },
-  { nom: "Timor oriental", code: "tl" },
-  { nom: "Turkménistan", code: "tm" },
-  { nom: "Tunisie", code: "tn" },
-  { nom: "Tonga", code: "to" },
-  { nom: "Turquie", code: "tr" },
-  { nom: "Trinité-et-Tobago", code: "tt" },
-  { nom: "Tuvalu", code: "tv" },
-  { nom: "Taïwan", code: "tw" },
-  { nom: "Tanzanie", code: "tz" },
-  { nom: "Ukraine", code: "ua" },
-  { nom: "Ouganda", code: "ug" },
-  { nom: "Îles mineures éloignées des États-Unis", code: "um" },
-  { nom: "États-Unis", code: "us" },
-  { nom: "Uruguay", code: "uy" },
-  { nom: "Ouzbékistan", code: "uz" },
-  { nom: "Vatican", code: "va" },
-  { nom: "Saint-Vincent-et-les-Grenadines", code: "vc" },
-  { nom: "Venezuela", code: "ve" },
-  { nom: "Îles Vierges britanniques", code: "vg" },
-  { nom: "Îles Vierges des États-Unis", code: "vi" },
-  { nom: "Viêt Nam", code: "vn" },
-  { nom: "Vanuatu", code: "vu" },
-  { nom: "Wallis-et-Futuna", code: "wf" },
-  { nom: "Samoa", code: "ws" },
-  { nom: "Kosovo", code: "xk" },
-  { nom: "Yémen", code: "ye" },
-  { nom: "Mayotte", code: "yt" },
-  { nom: "Afrique du Sud", code: "za" },
-  { nom: "Zambie", code: "zm" },
-  { nom: "Zimbabwe", code: "zw" }
+  { nom: "Andorre", code: "ad", capitale: "Andorre-la-Vieille" },
+  { nom: "Émirats arabes unis", code: "ae", capitale: "Abou Dabi" },
+  { nom: "Afghanistan", code: "af", capitale: "Kaboul" },
+  { nom: "Antigua-et-Barbuda", code: "ag", capitale: "Saint John's" },
+  { nom: "Anguilla", code: "ai", capitale: "The Valley" },
+  { nom: "Albanie", code: "al", capitale: "Tirana" },
+  { nom: "Arménie", code: "am", capitale: "Erevan" },
+  { nom: "Angola", code: "ao", capitale: "Luanda" },
+  { nom: "Antarctique", code: "aq", capitale: null },
+  { nom: "Argentine", code: "ar", capitale: "Buenos Aires" },
+  { nom: "Samoa américaines", code: "as", capitale: "Pago Pago" },
+  { nom: "Autriche", code: "at", capitale: "Vienne" },
+  { nom: "Australie", code: "au", capitale: "Canberra" },
+  { nom: "Aruba", code: "aw", capitale: "Oranjestad" },
+  { nom: "Îles Åland", code: "ax", capitale: "Mariehamn" },
+  { nom: "Azerbaïdjan", code: "az", capitale: "Bakou" },
+  { nom: "Bosnie-Herzégovine", code: "ba", capitale: "Sarajevo" },
+  { nom: "Barbade", code: "bb", capitale: "Bridgetown" },
+  { nom: "Bangladesh", code: "bd", capitale: "Dacca" },
+  { nom: "Belgique", code: "be", capitale: "Bruxelles" },
+  { nom: "Burkina Faso", code: "bf", capitale: "Ouagadougou" },
+  { nom: "Bulgarie", code: "bg", capitale: "Sofia" },
+  { nom: "Bahreïn", code: "bh", capitale: "Manama" },
+  { nom: "Burundi", code: "bi", capitale: "Gitega" },
+  { nom: "Bénin", code: "bj", capitale: "Porto-Novo" },
+  { nom: "Saint-Barthélemy", code: "bl", capitale: "Gustavia" },
+  { nom: "Bermudes", code: "bm", capitale: "Hamilton" },
+  { nom: "Brunéi", code: "bn", capitale: "Bandar Seri Begawan" },
+  { nom: "Bolivie", code: "bo", capitale: "Sucre" },
+  { nom: "Bonaire", code: "bq", capitale: "Kralendijk" },
+  { nom: "Brésil", code: "br", capitale: "Brasília" },
+  { nom: "Bahamas", code: "bs", capitale: "Nassau" },
+  { nom: "Bhoutan", code: "bt", capitale: "Thimphou" },
+  { nom: "Île Bouvet", code: "bv", capitale: null },
+  { nom: "Botswana", code: "bw", capitale: "Gaborone" },
+  { nom: "Biélorussie", code: "by", capitale: "Minsk" },
+  { nom: "Belize", code: "bz", capitale: "Belmopan" },
+  { nom: "Canada", code: "ca", capitale: "Ottawa" },
+  { nom: "Îles Cocos", code: "cc", capitale: "West Island" },
+  { nom: "République démocratique du Congo", code: "cd", capitale: "Kinshasa" },
+  { nom: "République centrafricaine", code: "cf", capitale: "Bangui" },
+  { nom: "Congo", code: "cg", capitale: "Brazzaville" },
+  { nom: "Suisse", code: "ch", capitale: "Berne" },
+  { nom: "Côte d'Ivoire", code: "ci", capitale: "Yamoussoukro" },
+  { nom: "Îles Cook", code: "ck", capitale: "Avarua" },
+  { nom: "Chili", code: "cl", capitale: "Santiago" },
+  { nom: "Cameroun", code: "cm", capitale: "Yaoundé" },
+  { nom: "Chine", code: "cn", capitale: "Pékin" },
+  { nom: "Colombie", code: "co", capitale: "Bogotá" },
+  { nom: "Costa Rica", code: "cr", capitale: "San José" },
+  { nom: "Cuba", code: "cu", capitale: "La Havane" },
+  { nom: "Cap-Vert", code: "cv", capitale: "Praia" },
+  { nom: "Curaçao", code: "cw", capitale: "Willemstad" },
+  { nom: "Île Christmas", code: "cx", capitale: "Flying Fish Cove" },
+  { nom: "Chypre", code: "cy", capitale: "Nicosie" },
+  { nom: "République tchèque", code: "cz", capitale: "Prague" },
+  { nom: "Allemagne", code: "de", capitale: "Berlin" },
+  { nom: "Djibouti", code: "dj", capitale: "Djibouti" },
+  { nom: "Danemark", code: "dk", capitale: "Copenhague" },
+  { nom: "Dominique", code: "dm", capitale: "Roseau" },
+  { nom: "République dominicaine", code: "do", capitale: "Saint-Domingue" },
+  { nom: "Algérie", code: "dz", capitale: "Alger" },
+  { nom: "Équateur", code: "ec", capitale: "Quito" },
+  { nom: "Estonie", code: "ee", capitale: "Tallinn" },
+  { nom: "Égypte", code: "eg", capitale: "Le Caire" },
+  { nom: "Sahara occidental", code: "eh", capitale: "Laâyoune" },
+  { nom: "Érythrée", code: "er", capitale: "Asmara" },
+  { nom: "Espagne", code: "es", capitale: "Madrid" },
+  { nom: "Éthiopie", code: "et", capitale: "Addis-Abeba" },
+  { nom: "Finlande", code: "fi", capitale: "Helsinki" },
+  { nom: "Fidji", code: "fj", capitale: "Suva" },
+  { nom: "Îles Malouines", code: "fk", capitale: "Stanley" },
+  { nom: "Micronésie", code: "fm", capitale: "Palikir" },
+  { nom: "Îles Féroé", code: "fo", capitale: "Tórshavn" },
+  { nom: "France", code: "fr", capitale: "Paris" },
+  { nom: "Gabon", code: "ga", capitale: "Libreville" },
+  { nom: "Angleterre", code: "gb-eng", capitale: "Londres" },
+  { nom: "Irlande du Nord", code: "gb-nir", capitale: "Belfast" },
+  { nom: "Écosse", code: "gb-sct", capitale: "Édimbourg" },
+  { nom: "Pays de Galles", code: "gb-wls", capitale: "Cardiff" },
+  { nom: "Royaume-Uni", code: "gb", capitale: "Londres" },
+  { nom: "Grenade", code: "gd", capitale: "Saint-Georges" },
+  { nom: "Géorgie", code: "ge", capitale: "Tbilissi" },
+  { nom: "Guyane française", code: "gf", capitale: "Cayenne" },
+  { nom: "Guernesey", code: "gg", capitale: "Saint-Pierre-Port" },
+  { nom: "Ghana", code: "gh", capitale: "Accra" },
+  { nom: "Gibraltar", code: "gi", capitale: "Gibraltar" },
+  { nom: "Groenland", code: "gl", capitale: "Nuuk" },
+  { nom: "Gambie", code: "gm", capitale: "Banjul" },
+  { nom: "Guinée", code: "gn", capitale: "Conakry" },
+  { nom: "Guadeloupe", code: "gp", capitale: "Basse-Terre" },
+  { nom: "Guinée équatoriale", code: "gq", capitale: "Malabo" },
+  { nom: "Grèce", code: "gr", capitale: "Athènes" },
+  { nom: "Géorgie du Sud-et-les Îles Sandwich du Sud", code: "gs", capitale: "King Edward Point" },
+  { nom: "Guatemala", code: "gt", capitale: "Guatemala" },
+  { nom: "Guam", code: "gu", capitale: "Hagåtña" },
+  { nom: "Guinée-Bissau", code: "gw", capitale: "Bissau" },
+  { nom: "Guyana", code: "gy", capitale: "Georgetown" },
+  { nom: "Hong Kong", code: "hk", capitale: "Hong Kong" },
+  { nom: "Île Heard et îles McDonald", code: "hm", capitale: null },
+  { nom: "Honduras", code: "hn", capitale: "Tegucigalpa" },
+  { nom: "Croatie", code: "hr", capitale: "Zagreb" },
+  { nom: "Haïti", code: "ht", capitale: "Port-au-Prince" },
+  { nom: "Hongrie", code: "hu", capitale: "Budapest" },
+  { nom: "Indonésie", code: "id", capitale: "Jakarta" },
+  { nom: "Irlande", code: "ie", capitale: "Dublin" },
+  { nom: "Israël", code: "il", capitale: "Jérusalem" },
+  { nom: "Île de Man", code: "im", capitale: "Douglas" },
+  { nom: "Inde", code: "in", capitale: "New Delhi" },
+  { nom: "Territoire britannique de l'océan Indien", code: "io", capitale: null },
+  { nom: "Irak", code: "iq", capitale: "Bagdad" },
+  { nom: "Iran", code: "ir", capitale: "Téhéran" },
+  { nom: "Islande", code: "is", capitale: "Reykjavik" },
+  { nom: "Italie", code: "it", capitale: "Rome" },
+  { nom: "Jersey", code: "je", capitale: "Saint-Hélier" },
+  { nom: "Jamaïque", code: "jm", capitale: "Kingston" },
+  { nom: "Jordanie", code: "jo", capitale: "Amman" },
+  { nom: "Japon", code: "jp", capitale: "Tokyo" },
+  { nom: "Kenya", code: "ke", capitale: "Nairobi" },
+  { nom: "Kirghizistan", code: "kg", capitale: "Bichkek" },
+  { nom: "Cambodge", code: "kh", capitale: "Phnom Penh" },
+  { nom: "Kiribati", code: "ki", capitale: "Tarawa" },
+  { nom: "Comores", code: "km", capitale: "Moroni" },
+  { nom: "Saint-Christophe-et-Niévès", code: "kn", capitale: "Basseterre" },
+  { nom: "Corée du Nord", code: "kp", capitale: "Pyongyang" },
+  { nom: "Corée du Sud", code: "kr", capitale: "Séoul" },
+  { nom: "Koweït", code: "kw", capitale: "Koweït" },
+  { nom: "Îles Caïmans", code: "ky", capitale: "George Town" },
+  { nom: "Kazakhstan", code: "kz", capitale: "Astana" },
+  { nom: "Laos", code: "la", capitale: "Vientiane" },
+  { nom: "Liban", code: "lb", capitale: "Beyrouth" },
+  { nom: "Sainte-Lucie", code: "lc", capitale: "Castries" },
+  { nom: "Liechtenstein", code: "li", capitale: "Vaduz" },
+  { nom: "Sri Lanka", code: "lk", capitale: "Sri Jayawardenapura Kotte" },
+  { nom: "Libéria", code: "lr", capitale: "Monrovia" },
+  { nom: "Lesotho", code: "ls", capitale: "Maseru" },
+  { nom: "Lituanie", code: "lt", capitale: "Vilnius" },
+  { nom: "Luxembourg", code: "lu", capitale: "Luxembourg" },
+  { nom: "Lettonie", code: "lv", capitale: "Riga" },
+  { nom: "Libye", code: "ly", capitale: "Tripoli" },
+  { nom: "Maroc", code: "ma", capitale: "Rabat" },
+  { nom: "Monaco", code: "mc", capitale: "Monaco" },
+  { nom: "Moldavie", code: "md", capitale: "Chișinău" },
+  { nom: "Monténégro", code: "me", capitale: "Podgorica" },
+  { nom: "Saint-Martin", code: "mf", capitale: "Marigot" },
+  { nom: "Madagascar", code: "mg", capitale: "Antananarivo" },
+  { nom: "Îles Marshall", code: "mh", capitale: "Majuro" },
+  { nom: "Macédoine du Nord", code: "mk", capitale: "Skopje" },
+  { nom: "Mali", code: "ml", capitale: "Bamako" },
+  { nom: "Myanmar", code: "mm", capitale: "Naypyidaw" },
+  { nom: "Mongolie", code: "mn", capitale: "Oulan-Bator" },
+  { nom: "Macao", code: "mo", capitale: "Macao" },
+  { nom: "Îles Mariannes du Nord", code: "mp", capitale: "Saipan" },
+  { nom: "Martinique", code: "mq", capitale: "Fort-de-France" },
+  { nom: "Mauritanie", code: "mr", capitale: "Nouakchott" },
+  { nom: "Montserrat", code: "ms", capitale: "Brades" },
+  { nom: "Malte", code: "mt", capitale: "La Valette" },
+  { nom: "Maurice", code: "mu", capitale: "Port-Louis" },
+  { nom: "Maldives", code: "mv", capitale: "Malé" },
+  { nom: "Malawi", code: "mw", capitale: "Lilongwe" },
+  { nom: "Mexique", code: "mx", capitale: "Mexico" },
+  { nom: "Malaisie", code: "my", capitale: "Kuala Lumpur" },
+  { nom: "Mozambique", code: "mz", capitale: "Maputo" },
+  { nom: "Namibie", code: "na", capitale: "Windhoek" },
+  { nom: "Nouvelle-Calédonie", code: "nc", capitale: "Nouméa" },
+  { nom: "Niger", code: "ne", capitale: "Niamey" },
+  { nom: "Norfolk", code: "nf", capitale: "Kingston" },
+  { nom: "Nigeria", code: "ng", capitale: "Abuja" },
+  { nom: "Nicaragua", code: "ni", capitale: "Managua" },
+  { nom: "Pays-Bas", code: "nl", capitale: "Amsterdam" },
+  { nom: "Norvège", code: "no", capitale: "Oslo" },
+  { nom: "Népal", code: "np", capitale: "Katmandou" },
+  { nom: "Nauru", code: "nr", capitale: "Yaren" },
+  { nom: "Niue", code: "nu", capitale: "Alofi" },
+  { nom: "Nouvelle-Zélande", code: "nz", capitale: "Wellington" },
+  { nom: "Oman", code: "om", capitale: "Mascate" },
+  { nom: "Panama", code: "pa", capitale: "Panama" },
+  { nom: "Pérou", code: "pe", capitale: "Lima" },
+  { nom: "Polynésie française", code: "pf", capitale: "Papeete" },
+  { nom: "Papouasie-Nouvelle-Guinée", code: "pg", capitale: "Port Moresby" },
+  { nom: "Philippines", code: "ph", capitale: "Manille" },
+  { nom: "Pakistan", code: "pk", capitale: "Islamabad" },
+  { nom: "Pologne", code: "pl", capitale: "Varsovie" },
+  { nom: "Saint-Pierre-et-Miquelon", code: "pm", capitale: "Saint-Pierre" },
+  { nom: "Pitcairn", code: "pn", capitale: "Adamstown" },
+  { nom: "Porto Rico", code: "pr", capitale: "San Juan" },
+  { nom: "Palestine", code: "ps", capitale: "Ramallah" },
+  { nom: "Portugal", code: "pt", capitale: "Lisbonne" },
+  { nom: "Palaos", code: "pw", capitale: "Ngerulmud" },
+  { nom: "Paraguay", code: "py", capitale: "Asunción" },
+  { nom: "Qatar", code: "qa", capitale: "Doha" },
+  { nom: "Réunion", code: "re", capitale: "Saint-Denis" },
+  { nom: "Roumanie", code: "ro", capitale: "Bucarest" },
+  { nom: "Serbie", code: "rs", capitale: "Belgrade" },
+  { nom: "Russie", code: "ru", capitale: "Moscou" },
+  { nom: "Rwanda", code: "rw", capitale: "Kigali" },
+  { nom: "Arabie saoudite", code: "sa", capitale: "Riyad" },
+  { nom: "Îles Salomon", code: "sb", capitale: "Honiara" },
+  { nom: "Seychelles", code: "sc", capitale: "Victoria" },
+  { nom: "Soudan", code: "sd", capitale: "Khartoum" },
+  { nom: "Suède", code: "se", capitale: "Stockholm" },
+  { nom: "Singapour", code: "sg", capitale: "Singapour" },
+  { nom: "Sainte-Hélène", code: "sh", capitale: "Jamestown" },
+  { nom: "Slovénie", code: "si", capitale: "Ljubljana" },
+  { nom: "Slovaquie", code: "sk", capitale: "Bratislava" },
+  { nom: "Sierra Leone", code: "sl", capitale: "Freetown" },
+  { nom: "Saint-Marin", code: "sm", capitale: "Saint-Marin" },
+  { nom: "Sénégal", code: "sn", capitale: "Dakar" },
+  { nom: "Somalie", code: "so", capitale: "Mogadiscio" },
+  { nom: "Suriname", code: "sr", capitale: "Paramaribo" },
+  { nom: "Soudan du Sud", code: "ss", capitale: "Djouba" },
+  { nom: "Sao Tomé-et-Principe", code: "st", capitale: "Sao Tomé" },
+  { nom: "El Salvador", code: "sv", capitale: "San Salvador" },
+  { nom: "Syrie", code: "sy", capitale: "Damas" },
+  { nom: "Eswatini", code: "sz", capitale: "Mbabane" },
+  { nom: "Îles Turques-et-Caïques", code: "tc", capitale: "Cockburn Town" },
+  { nom: "Tchad", code: "td", capitale: "N'Djaména" },
+  { nom: "Territoires australiens de l'Antarctique", code: "tf", capitale: null },
+  { nom: "Togo", code: "tg", capitale: "Lomé" },
+  { nom: "Thaïlande", code: "th", capitale: "Bangkok" },
+  { nom: "Tadjikistan", code: "tj", capitale: "Douchanbé" },
+  { nom: "Tokelau", code: "tk", capitale: "Fakaofo" },
+  { nom: "Timor-Leste", code: "tl", capitale: "Dili" },
+  { nom: "Turkménistan", code: "tm", capitale: "Achgabat" },
+  { nom: "Tunisie", code: "tn", capitale: "Tunis" },
+  { nom: "Tonga", code: "to", capitale: "Nuku'alofa" },
+  { nom: "Turquie", code: "tr", capitale: "Ankara" },
+  { nom: "Trinité-et-Tobago", code: "tt", capitale: "Port-d'Espagne" },
+  { nom: "Tuvalu", code: "tv", capitale: "Funafuti" },
+  { nom: "Taïwan", code: "tw", capitale: "Taipei" },
+  { nom: "Tanzanie", code: "tz", capitale: "Dodoma" },
+  { nom: "Ukraine", code: "ua", capitale: "Kiev" },
+  { nom: "Ouganda", code: "ug", capitale: "Kampala" },
+  { nom: "Îles mineures éloignées des États-Unis", code: "um", capitale: null },
+  { nom: "États-Unis", code: "us", capitale: "Washington" },
+  { nom: "Uruguay", code: "uy", capitale: "Montevideo" },
+  { nom: "Ouzbékistan", code: "uz", capitale: "Tachkent" },
+  { nom: "Vatican", code: "va", capitale: "Cité du Vatican" },
+  { nom: "Saint-Vincent-et-les-Grenadines", code: "vc", capitale: "Kingstown" },
+  { nom: "Venezuela", code: "ve", capitale: "Caracas" },
+  { nom: "Îles Vierges britanniques", code: "vg", capitale: "Road Town" },
+  { nom: "Îles Vierges des États-Unis", code: "vi", capitale: "Charlotte-Amélie" },
+  { nom: "Viêt Nam", code: "vn", capitale: "Hanoï" },
+  { nom: "Vanuatu", code: "vu", capitale: "Port-Vila" },
+  { nom: "Wallis-et-Futuna", code: "wf", capitale: "Mata-Utu" },
+  { nom: "Samoa", code: "ws", capitale: "Apia" },
+  { nom: "Yémen", code: "ye", capitale: "Sanaa" },
+  { nom: "Mayotte", code: "yt", capitale: "Mamoudzou" },
+  { nom: "Afrique du Sud", code: "za", capitale: "Pretoria" },
+  { nom: "Zambie", code: "zm", capitale: "Lusaka" },
+  { nom: "Zimbabwe", code: "zw", capitale: "Harare" }
 ];
 
 // Tableau contenant les pays à ne pax inclure dans le jeu Map Game (car pas présents dans le SVG)
 const exclure = [
-  { nom: "Antarctique", code: "aq" },
-  { nom: "Angleterre", code: "gb-eng" },
-  { nom: "Irlande du Nord", code: "gb-nir" },
-  { nom: "Écosse", code: "gb-sct" },
-  { nom: "Pays de Galles", code: "gb-wls" },
-  { nom: "Îles mineures éloignées des États-Unis", code: "um" }
+  { nom: "Antarctique", code: "aq", capitale: null },
+  { nom: "Angleterre", code: "gb-eng", capitale: "Londres" },
+  { nom: "Irlande du Nord", code: "gb-nir", capitale: "Belfast" },
+  { nom: "Écosse", code: "gb-sct", capitale: "Édimbourg" },
+  { nom: "Pays de Galles", code: "gb-wls", capitale: "Cardiff" },
+  { nom: "Îles mineures éloignées des États-Unis", code: "um", capitale: null }
 ];
+
 
 // Fonction qui renvoie :
 // - 1 nom de pays aléatoire
@@ -288,7 +286,7 @@ function getRandomInfos(array, exclude) {
 
   // Sélectionner un élément aléatoire du tableau filtré
   const randomIndex = Math.floor(Math.random() * filteredArray.length);
-  return [filteredArray[randomIndex].nom, filteredArray[randomIndex].code];
+  return [filteredArray[randomIndex].nom, filteredArray[randomIndex].code, filteredArray[randomIndex].capitale];
 }
 
 // Fonction qui renvoie :
@@ -330,6 +328,7 @@ function getRandomCountryDetails(array, num) {
   return {
       codes: selectedCountries.map(country => country.code),
       names: selectedCountries.map(country => country.nom),
+      capitals : selectedCountries.map(country => country.capitale),
       correct: randomIndex + 1
   };
 }
@@ -340,6 +339,12 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname.
   document.getElementById('playButton2').addEventListener('click', mapGame);
   document.getElementById('borders').classList.add('easy');
   document.getElementById('borders').addEventListener('click', changeDifficulty);
+  const modeFlagGame = document.getElementById('modeFlagGame');
+  const modeMapGame = document.getElementById('modeMapGame');
+  modeFlagGame.classList.add('countries');
+  modeFlagGame.addEventListener('click', () => changeMode(modeFlagGame));
+  modeMapGame.classList.add('countries');
+  modeMapGame.addEventListener('click', () => changeMode(modeMapGame));
 }
 
 // Fonction qui gere le bouton de changement de difficulté
@@ -354,6 +359,19 @@ function changeDifficulty(){
       button.classList.add('easy');
       button.innerHTML = "Facile";
     }
+}
+
+// Fonction qui gere le bouton de changement de mode
+function changeMode(button){
+  if (button.classList.contains('countries')) {
+    button.classList.remove('countries');
+    button.classList.add('capitals');
+    button.innerHTML = "Capitales";
+  } else {
+    button.classList.remove('capitals');
+    button.classList.add('countries');
+    button.innerHTML = "Pays";
+  }
 }
 
 // Fonction qui enleve les accents d'un string
@@ -401,21 +419,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Fonction qui démarre le jeu Flag Game
 async function flagGame() {
   try {
-    const result = getRandomCountryDetails(countries, 4);
-    const codes = result.codes;
-    const names = result.names;
-    const originalIndex = result.correct;
+    let result = getRandomCountryDetails(countries, 4);
+    let codes = result.codes;
+    let originalIndex = result.correct;
+    let names = "";
+    const button = document.getElementById('modeFlagGame');
+    if (button.classList[1] === "countries"){
+      names = result.names;
+    } else {
+      names = result.capitals;
+    }
 
     // ------------ Initialisation CSS ------------//
 
     // Ajoute un ecart au dessus
     const countryText = document.getElementById('countryName');
-    countryText.style.marginTop = '12.5vh';
+    countryText.style.marginTop = '8.5vh';
 
-    // Fait disparaitre le bouton
+    // Fait disparaitre le bouton Jouer
     const playButton = document.getElementById('playButton');
     playButton.style.pointerEvents = 'none';
     playButton.style.display = 'none';
+
+    // Fait disparaitre le bouton mode
+    const modeButton = document.getElementById('modeFlagGame');
+    modeButton.style.display = "none";
 
      // Permet de cliquer sur les drapeaux et enlève la bordure
     for (let i = 1; i <= 4; i++) {
@@ -434,6 +462,19 @@ async function flagGame() {
      // ------------ Initialisation CSS ------------//
 
     document.getElementById('scoreFlagGame').textContent = "Score : " + scoreFlagGame;
+
+    const mode = document.getElementById('modeFlagGame');
+    if (mode.classList[1] === "countries"){
+      document.getElementById('countryName').innerHTML = "Trouvez le drapeau de : " + "<strong>" + names[originalIndex-1] + "</strong>";
+    } else {
+      while (names.includes(null)){
+        result = getRandomCountryDetails(countries, 4);
+        codes = result.codes;
+        names = result.capitals;
+        originalIndex = result.correct;
+      }
+      document.getElementById('countryName').innerHTML = "Trouvez le drapeau dont la capitale est : " + "<strong>" + names[originalIndex-1] + "</strong>";
+    }
 
     // Fonction pour précharger une image
     function preloadImage(src) {
@@ -535,8 +576,6 @@ async function flagGame() {
 
     // ------------ Gestion clic drapeaux ------------//
 
-
-    document.getElementById('countryName').innerHTML = "Trouvez le drapeau de : " + "<strong>" + names[originalIndex-1] + "</strong>";
     document.getElementById('content').style.display = 'flex';
   } catch (error) {
     console.error('Error:', error);
@@ -561,18 +600,23 @@ async function endFlagGame(bad, answer, names){
     div.style.pointerEvents = 'none';
   }
 
-  // Affiche les noms des pays quand perdu
+  // Affiche les noms des pays ou capitales quand perdu
   for (let i = 1; i <= 4; i++) {
     const name = document.getElementById('name' + i);
     name.textContent = names[i-1];
     name.style.fontWeight = "bold";
-  }
+  } 
+
 
   // Permet de recliquer à nouveau le bouton jouer
   const playButton = document.getElementById('playButton');
   playButton.style.pointerEvents = 'auto';
   playButton.style.display = 'flex';
   playButton.textContent = 'Rejouer';
+
+  // Permet de recliquer à nouveau le bouton mode
+  const modeButton = document.getElementById('modeFlagGame');
+  modeButton.style.display = "block";
 
   // Enleve l'ecart definit pendant le jeu
   const countryText = document.getElementById('countryName');
@@ -606,12 +650,16 @@ async function mapGame() {
   const borderButton = document.getElementById('borders');
   borderButton.style.display = "none";
 
+  // Fait disparaitre le bouton mode
+  const modeButton = document.getElementById('modeMapGame');
+  modeButton.style.display = "none";
+
   // Ajoute la carte
   const map = document.getElementById('svg-container');
   map.style.display = "block";
 
-  const button = document.getElementById('borders');
-  if (button.classList[1] === "easy"){
+  const difficulty = document.getElementById('borders');
+  if (difficulty.classList[1] === "easy"){
     paths.forEach((path) => {
       path.style.fill = 'rgba(60,60,60, .5)';
       path.style.strokeWidth = "0.25px";
@@ -629,9 +677,17 @@ async function mapGame() {
   // ------------ Initialisation CSS ------------//
 
   document.getElementById('scoreMapGame').textContent = "Score : " + scoreMapGame;
-  const randomInfos = getRandomInfos(countries, exclure);
-  document.getElementById('countryName2').innerHTML = "Cliquez sur : " + "<strong>" + randomInfos[0] + "</strong>";
-    
+  let randomInfos = getRandomInfos(countries, exclure);
+
+  const mode = document.getElementById('modeMapGame');
+  if (mode.classList[1] === "countries"){
+    document.getElementById('countryName2').innerHTML = "Cliquez sur : " + "<strong>" + randomInfos[0] + "</strong>";
+  } else {
+    while (randomInfos[2] === null){
+      randomInfos = getRandomInfos(countries, exclure);
+    }
+    document.getElementById('countryName2').innerHTML = "Cliquez sur le pays ayant pour capitale : " + "<strong>" + randomInfos[2] + "</strong>";
+  }
   paths.forEach((path) => {
     // Add a new 'click' event listener with a defined function handleClick
     path.addEventListener('click', handleClick);
@@ -703,6 +759,10 @@ async function endMapGame(bad, answer){
   // Permet de recliquer à nouveau le bouton difficulté
   const borderButton = document.getElementById('borders');
   borderButton.style.display = "block";
+
+  // Permet de recliquer à nouveau le bouton mode
+  const modeButton = document.getElementById('modeMapGame');
+  modeButton.style.display = "block";
 
   // Enleve l'ecart definit pendant le jeu
   const countryText = document.getElementById('countryName2');
