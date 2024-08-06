@@ -46,8 +46,36 @@
         <h1 class="titre_principal" style="margin-top: 15vh;">Flag Game</h1>
         <div style="margin-top: 4vh; display: flex; justify-content: center;">
           <button class="playButton" id="playButton" style="margin-right: 1em;">Jouer</button>
-          <button class="playButton" id="modeFlagGame">Pays</button>
-        </div>
+          <button class="playButton" id="modeFlagGame" style="margin-right: 1em;">Pays</button>
+          <details class="playButton" id="zoneFlagGame" style="position: relative; display: inline-block; background-color: seagreen; border-radius: 10px;">
+            <summary style="display: flex; justify-content: center; align-items: center; background-color: seagreen;">
+              <p id="zoneFlag" style="margin: 0; color: white;">Monde</p>
+            </summary>
+            <ul style="z-index: 3; outline: solid black; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 150px; background-color: rgba(132, 181, 201, 1); border-radius: 10px; overflow: hidden; padding: 0; margin: 0; list-style-type: none;">
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionFlagGame">Monde</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionFlagGame">Afrique</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionFlagGame">Amérique du Nord</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionFlagGame">Amérique du Sud</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionFlagGame">Asie</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionFlagGame">Europe</a>
+              </li>
+              <li style="padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionFlagGame">Océanie</a>
+              </li>
+          </ul>
+          </details>
+        </div>     
         <p style="font-size: 3vh;" id="countryName"></p>
         <p style=" font-size: 3vh" id="scoreFlagGame"></p>
       </div>
@@ -79,7 +107,35 @@
         <div style="margin-top: 4vh; display: flex; justify-content: center;">
           <button class="playButton" id="playButton2" style="margin-right: 1em;">Jouer</button>
           <button class="playButton" id="borders" style="margin-right: 1em;">Facile</button>
-          <button class="playButton" id="modeMapGame">Pays</button>
+          <button class="playButton" id="modeMapGame" style="margin-right: 1em;">Pays</button>
+          <details class="playButton" id="zoneMapGame" style="position: relative; display: inline-block; background-color: seagreen; border-radius: 10px;">
+            <summary style="display: flex; justify-content: center; align-items: center; background-color: seagreen;">
+              <p id="zoneMap" style="margin: 0; color: white;">Monde</p>
+            </summary>
+            <ul style="z-index: 3; outline: solid black; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 150px; background-color: rgba(132, 181, 201, 1); border-radius: 10px; overflow: hidden; padding: 0; margin: 0; list-style-type: none;">
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionMapGame">Monde</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionMapGame">Afrique</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionMapGame">Amérique du Nord</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionMapGame">Amérique du Sud</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionMapGame">Asie</a>
+              </li>
+              <li style="border-bottom: 1px solid black; padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionMapGame">Europe</a>
+              </li>
+              <li style="padding: 10px 20px; background-color: seagreen;">
+                  <a href="#" class="mapOptionMapGame">Océanie</a>
+              </li>
+          </ul>
+          </details>
         </div>
         <p style="font-size: 3vh;" id="countryName2"></p>
         <p style="font-size: 3vh;" id="scoreMapGame"></p>
